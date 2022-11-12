@@ -20,18 +20,18 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // dispatch({type: "LOGIN_START"});
-        // try {
-        //     const res = await axiosInstance.post("/auth/login", {
-        //         username: userRef.current.value,
-        //         password: passwordRef.current.value
-        //     });
+        dispatch({type: "LOGIN_START"});
+        try {
+            const res = await axiosInstance.post("/auth/login", {
+                username: userRef.current.value,
+                password: passwordRef.current.value
+            });
 
-        //     dispatch({type: "LOGIN_SUCCESS", payload: res.data});
-        // } catch(err) {
-        //     setErrorMessage(err.response.data);
-        //     dispatch({type: "LOGIN_FAILURE"});
-        // }
+            dispatch({type: "LOGIN_SUCCESS", payload: res.data});
+        } catch(err) {
+            setErrorMessage(err.response.data);
+            dispatch({type: "LOGIN_FAILURE"});
+        }
     }
 
   return (

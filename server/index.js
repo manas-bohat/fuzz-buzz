@@ -3,6 +3,9 @@ const app = express();
 const dotenv = require("dotenv");
 const authRoute = require("./routes/auth.js");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -15,6 +18,15 @@ mongoose.connect(process.env.MONGO_URL, {
 .catch((err) => console.log(err));
 
 app.use("/auth", authRoute);  
+
+// const cors=require("cors");
+// const corsOptions ={
+//    origin:'*', 
+//    credentials:true,            //access-control-allow-credentials:true
+//    optionSuccessStatus:200,
+// }
+
+// app.use(cors(corsOptions)) // Use this after the variable declaration
 
 // if(process.env.NODE_ENV == "production") {
 //     app.use(express.static("client/build"));

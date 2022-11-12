@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-// import { axiosInstance } from "../../config";
+import { axiosInstance } from "../../config";
 import "./register.css";
 
 export default function Register() {
@@ -18,19 +18,19 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // try {
-        //     const res = await axiosInstance.post("/auth/register", {
-        //         username,
-        //         email,
-        //         password
-        //     });
-        //     setErrorMessage("");
-        //     res.data && window.location.replace("/login");
-        // } catch (err) {
+        try {
+            const res = await axiosInstance.post("/auth/register", {
+                username,
+                email,
+                password
+            });
+            setErrorMessage("");
+            res.data && window.location.replace("/login");
+        } catch (err) {
 
-        //     setErrorMessage(err.response.data);
-        //     // console.log(err.response.data);
-        // }
+            setErrorMessage(err.response.data);
+            // console.log(err.response.data);
+        }
     };
 
     return (
