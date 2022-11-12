@@ -1,36 +1,37 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-// import { axiosInstance } from "../../config";
+import { axiosInstance } from "../../config";
 import "./register.css";
 
 export default function Register() {
 
-    // const location = useLocation();
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, [location]);
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setErrorMessage] = useState("");
 
+    // console.log(1);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // try {
-        //     const res = await axiosInstance.post("/auth/register", {
-        //         username,
-        //         email,
-        //         password
-        //     });
-        //     setErrorMessage("");
-        //     res.data && window.location.replace("/login");
-        // } catch (err) {
-
-        //     setErrorMessage(err.response.data);
-        //     // console.log(err.response.data);
-        // }
+        console.log(1);
+        try {
+            const res = await axiosInstance.post("/auth/register", {
+                username,
+                email,
+                password
+            });
+            setErrorMessage("");
+            res.data && window.location.replace("/login");
+        } catch (err) {
+            setErrorMessage(err.response.data);
+            console.log(err.response.data);
+        }
     };
 
     return (
