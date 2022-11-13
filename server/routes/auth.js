@@ -2,7 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require('bcrypt');
 
-// REGISTER
+
+// REGISTER a new user
 router.post("/register", async (req, res) => {
     try {
         const pass = req.body.password;
@@ -41,7 +42,7 @@ router.post("/register", async (req, res) => {
 
         userPut = await newUser.save();  // users will be the collection
         // in which this user will get added (MongoDB plural thingy)
-        console.log(userPut);
+        // console.log(userPut);
         res.status(200).json(userPut);
     } catch (err) {
         console.log("NOOOOOO");

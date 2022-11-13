@@ -1,20 +1,40 @@
 const mongoose = require("mongoose")
 
+// changes in Document Schema
 const DocumentSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
+        required: true
     },
-    desc: {
+    description: {
         type: String,
+        required: true
+    },
+    keywords: [
+        {
+          keyword: {
+            type: String,
+            required: true
+          },
+        },
+    ],
+    createdAt: {
+        type: Date,
         required: true,
+        default: Date.now
     },
-    photo: {
-        type: String
+    coverImage: {
+        type: Buffer,
+        required:false //change it to true
     },
-    username: {
+    coverImageType: {
         type: String,
-        required: true,
+        required: false //change it to true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false, //change it to true
+        ref: 'User'
     }
 }, {timestamps: true}
 );
